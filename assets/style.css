@@ -23,6 +23,7 @@
   grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
   gap: 20px;
 }
+
 .ua-card-link {
   text-decoration: none;
   color: #000;
@@ -95,4 +96,26 @@
 .ua-card-content p {
   margin: 5px 0;
   font-size: 16px;
+}
+@media (max-width: 650px) {
+  .ua-cards {
+   grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+  .ua-card {
+    flex-direction: column;
+  }
+  .ua-card img {
+    width: 100%;
+    height: auto;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .ua-card-link{
+    width: 100%; 
+  }
+  .ua-filtros-container,.ua-filtros{
+    flex-direction: column;
+  }
 }

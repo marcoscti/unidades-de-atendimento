@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Unidades de Atendimento
  * Description: CRUD de Unidades de Atendimento com shortcode para exibição em cards filtráveis.
- * Version: 1.1.1
+ * Version: 1.1.2
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -69,8 +69,8 @@ add_action('save_post', function ($post_id) {
 });
 
 add_shortcode('unidades_atendimento', function () {
-    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.1.1", "all");
-    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.1.1", "all");
+    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.1.2", "all");
+    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.1.2", "all");
 
     $q = new WP_Query([
         'post_type' => 'unidade_atendimento',
@@ -83,13 +83,15 @@ add_shortcode('unidades_atendimento', function () {
     ob_start(); ?>
     <div class="ua-filtros-container">
         <div class="ua-filtros">
-        <strong>Filtrar por:</strong>
-        <button data-filter="Todos">Todos</button>
-        <button data-filter="Hospital">Hospital</button>
-        <button data-filter="UPA">UPA</button>
+            <strong>Filtrar por:</strong>
+            <div class="ua-filtros-button">
+                <button data-filter="Todos">Todos</button>
+                <button data-filter="Hospital">Hospital</button>
+                <button data-filter="UPA">UPA</button>
+            </div>
         </div>
         <div class="ua-count-itens">
-        <strong>Unidades encontradas: </strong><span id="ua-total-count"><?php echo $q->found_posts; ?></span>
+            <strong>Unidades encontradas: </strong><span id="ua-total-count"><?php echo $q->found_posts; ?></span>
         </div>
     </div>
     <div class="ua-cards">
@@ -123,7 +125,7 @@ add_shortcode('unidades_atendimento', function () {
                 <?php } ?>
             </div>
         <?php endwhile;
-        
+
         wp_reset_postdata(); ?>
     </div>
 <?php return ob_get_clean();
