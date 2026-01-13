@@ -57,6 +57,7 @@
 .ua-card:hover{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-color: #EC6608;
+    cursor: pointer;
 }
 .ua-card:hover .ua-card-link {
     background-color: #EC6608;
