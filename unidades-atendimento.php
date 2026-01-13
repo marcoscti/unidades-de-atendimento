@@ -92,22 +92,26 @@ add_shortcode('unidades_atendimento', function () {
             $tipo = get_post_meta(get_the_ID(), 'tipo', true); ?>
             <div class="ua-card" data-tipo="<?php echo esc_attr($tipo); ?>">
                 <div class="ua-card-content">
-                    <h3 class="ua-card-title"><?php the_title(); ?></h3>
-                    <p><?php the_content(); ?></p>
-                    <p><strong>Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
-                        <br><strong>Telefone: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'telefone', true)); ?>
-                    </p>
-                    <a class="ua-card-link" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'link', true)); ?>" target="_blank">Saiba mais <div class="ua-card-link-icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
-                                <path style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="
+                    <div>
+                        <h3 class="ua-card-title"><?php the_title(); ?></h3>
+                        <p><?php the_content(); ?></p>
+                        <p><strong>Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
+                            <br><strong>Telefone: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'telefone', true)); ?>
+                        </p>
+                    </div>
+                    <div>
+                        <a class="ua-card-link" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'link', true)); ?>" target="_blank">Saiba mais <div class="ua-card-link-icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+                                    <path style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="
 	M38.5,25.5v10c0,3.314-2.686,6-6,6h-20c-3.314,0-6-2.686-6-6v-20c0-3.314,2.686-6,6-6h10" />
-                                <line style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="23.5" y1="24.5" x2="41.5" y2="6.5" />
-                                <polyline style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
+                                    <line style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="23.5" y1="24.5" x2="41.5" y2="6.5" />
+                                    <polyline style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
 	27.5,6.5 41.5,6.5 41.5,20.5 " />
-                            </svg></div></a>
+                                </svg></div></a>
+                    </div>
                 </div>
                 <?php if (has_post_thumbnail()) the_post_thumbnail(); ?>
-                <?php if(!has_post_thumbnail()) {?>
+                <?php if (!has_post_thumbnail()) { ?>
                     <div class="ua-card-placeholder">
                         <span class="ua-placeholder-legend">Sem imagem</span>
                     </div>
