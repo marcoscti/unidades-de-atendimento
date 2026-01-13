@@ -69,8 +69,8 @@ add_action('save_post', function ($post_id) {
 });
 
 add_shortcode('unidades_atendimento', function () {
-    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.1.1", true);
-    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.1.1", true);
+    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.1.1", "all");
+    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.1.1", "all");
 
     $q = new WP_Query([
         'post_type' => 'unidade_atendimento',
