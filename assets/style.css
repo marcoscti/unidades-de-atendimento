@@ -1,12 +1,19 @@
+.ua-filtros-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 .ua-filtros button {
   background: #fff;
-  border: 2px solid #0094c6;
+  border: 2px solid #575756;
   border-radius: 8px;
   padding: 10px 15px;
   margin-right: 5px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
+  color: #000;
 }
 .ua-filtros button:hover {
   border-color: #EC6608;
@@ -25,7 +32,7 @@
   width: 135px;
   height: 40px;
   justify-content: center;
-  background-color: #0094c6;
+  background-color: #575756;
   border-radius: 8px;
   color: #fff !important;
   cursor: pointer;
@@ -43,7 +50,7 @@
   justify-content: space-between
 }
 .ua-card {
-  border: 2px solid #0094c6;
+  border: 2px solid #575756;
   display: flex;
   border-radius: 10px;
 }
@@ -72,7 +79,7 @@
   rotate: -45deg;
 }
 .ua-card img {
-  width: 153px;
+  width: 200px;
   height: 100%;
   object-fit: cover;
   border-top-right-radius: 10px;

@@ -81,11 +81,16 @@ add_shortcode('unidades_atendimento', function () {
     ]);
 
     ob_start(); ?>
-    <div class="ua-filtros">
+    <div class="ua-filtros-container">
+        <div class="ua-filtros">
         <strong>Filtrar por:</strong>
         <button data-filter="Todos">Todos</button>
         <button data-filter="Hospital">Hospital</button>
         <button data-filter="UPA">UPA</button>
+        </div>
+        <div class="ua-count-itens">
+        <strong>Unidades encontradas: </strong><span id="ua-total-count"><?php echo $q->found_posts; ?></span>
+        </div>
     </div>
     <div class="ua-cards">
         <?php while ($q->have_posts()): $q->the_post();
@@ -118,6 +123,7 @@ add_shortcode('unidades_atendimento', function () {
                 <?php } ?>
             </div>
         <?php endwhile;
+        
         wp_reset_postdata(); ?>
     </div>
 <?php return ob_get_clean();

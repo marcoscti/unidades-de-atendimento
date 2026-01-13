@@ -1,15 +1,26 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.ua-filtros button').forEach(btn => {
+    const totalCountSpan = document.getElementById('ua-total-count');
+    const cards = document.querySelectorAll('.ua-card');
+    const filterButtons = document.querySelectorAll('.ua-filtros button');
+
+    filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.dataset.filter;
-            document.querySelectorAll('.ua-card').forEach(card => {
-                if (filter === 'Todos' || card.dataset.tipo === filter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const isVisible = (filter === 'Todos' || card.dataset.tipo === filter);
+
+                card.style.display = isVisible ? 'flex' : 'none';
+
+                if (isVisible) {
+                    visibleCount++;
                 }
             });
+
+            if (totalCountSpan) {
+                totalCountSpan.textContent = visibleCount;
+            }
         });
     });
 });
