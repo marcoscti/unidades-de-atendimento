@@ -1,0 +1,87 @@
+.ua-filtros button {
+  background: #fff;
+  border: 2px solid #0094c6;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+.ua-filtros button:hover {
+  border-color: #EC6608;
+}
+.ua-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 20px;
+}
+.ua-card-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: semi-bold;
+  display: flex;
+  align-items: center;
+  width: 135px;
+  height: 40px;
+  justify-content: center;
+  background-color: #0094c6;
+  border-radius: 8px;
+  color: #fff !important;
+  cursor: pointer;
+}
+.ua-card-link-icon {
+  width: 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.ua-card-content {
+  padding: 15px;
+  flex: 1;
+}
+.ua-card {
+  border: 2px solid #0094c6;
+  display: flex;
+  border-radius: 10px;
+}
+.ua-card:hover{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #EC6608;
+}
+.ua-card:hover .ua-card-link {
+    background-color: #EC6608;
+}
+.ua-card-placeholder{
+  width: 153px;
+  height: 100%;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #f5f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ua-placeholder-legend{
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  padding: 10px;
+  rotate: -45deg;
+}
+.ua-card img {
+  width: 153px;
+  height: 100%;
+  object-fit: cover;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.ua-card-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+.ua-card-content p {
+  margin: 5px 0;
+  font-size: 16px;
+}
