@@ -121,6 +121,7 @@
   .ua-filtros-container,
   .ua-filtros {
     flex-direction: column;
+    gap: 20px;
   }
 }
 .ua-filtros button.active {
