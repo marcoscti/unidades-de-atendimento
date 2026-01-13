@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Unidades de Atendimento
  * Description: CRUD de Unidades de Atendimento com shortcode para exibição em cards filtráveis.
- * Version: 1.1.2
+ * Version: 1.2.0
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -69,8 +69,8 @@ add_action('save_post', function ($post_id) {
 });
 
 add_shortcode('unidades_atendimento', function () {
-    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.1.2", "all");
-    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.1.2", "all");
+    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.2.0", "all");
+    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.2.0", "all");
 
     $q = new WP_Query([
         'post_type' => 'unidade_atendimento',
@@ -91,7 +91,7 @@ add_shortcode('unidades_atendimento', function () {
             </div>
         </div>
         <div class="ua-count-itens">
-            <strong>Unidades encontradas: </strong><span id="ua-total-count"><?php echo $q->found_posts; ?></span>
+            <input type="search" id="ua-search-input" placeholder="Encontre uma unidade de Atendimento por nome ou endereço...">
         </div>
     </div>
     <div class="ua-cards">
@@ -101,8 +101,8 @@ add_shortcode('unidades_atendimento', function () {
                 <div class="ua-card-content">
                     <div>
                         <h3 class="ua-card-title"><?php the_title(); ?></h3>
-                        <p><?php the_content(); ?></p>
-                        <p><strong>Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
+                        <p class="ua-card-main-content"><?php the_content(); ?></p>
+                        <p class="ua-card-address"><strong>Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
                             <br><strong>Telefone: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'telefone', true)); ?>
                         </p>
                     </div>
