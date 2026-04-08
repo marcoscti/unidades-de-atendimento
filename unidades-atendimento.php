@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Unidades de Atendimento
  * Description: CRUD de Unidades de Atendimento com shortcode para exibição em cards filtráveis.
- * Version: 1.2.2
+ * Version: 1.3.0
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -38,6 +38,8 @@ function ua_render_meta($post)
         'telefone' => 'Telefone',
         'link' => 'Link',
         'tipo' => 'Tipo',
+        'teleconsulta' => 'Teleconsulta',
+        'telepediatria' => 'Telepediatria',
         'ativo' => 'Ativo'
     ];
     foreach ($fields as $key => $label) {
@@ -54,12 +56,14 @@ function ua_render_meta($post)
             </select>
         </label></p>
     <p><label><input type="checkbox" name="ativo" value="1" <?php checked($ativo, '1'); ?>> Ativo</label></p>
+    <p><label><input type="checkbox" name="teleconsulta" value="1" <?php checked($teleconsulta, '1'); ?>> Teleconsulta</label></p>
+    <p><label><input type="checkbox" name="telepediatria" value="1" <?php checked($telepediatria, '1'); ?>> Telepediatria</label></p>
 <?php
 }
 
 add_action('save_post', function ($post_id) {
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
-    foreach (['endereco', 'telefone', 'link', 'tipo', 'ativo'] as $field) {
+    foreach (['endereco', 'telefone', 'link', 'tipo', 'teleconsulta', 'telepediatria', 'ativo'] as $field) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, $field, $_POST[$field]);
         } else {
@@ -69,8 +73,8 @@ add_action('save_post', function ($post_id) {
 });
 
 add_shortcode('unidades_atendimento', function () {
-    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.2.2", "all");
-    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.2.2", "all");
+    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.3.0", "all");
+    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.3.0", "all");
 
     $q = new WP_Query([
         'post_type' => 'unidade_atendimento',
@@ -102,19 +106,22 @@ add_shortcode('unidades_atendimento', function () {
                     <div>
                         <h3 class="ua-card-title"><?php the_title(); ?></h3>
                         <p class="ua-card-main-content"><?php the_content(); ?></p>
-                        <p class="ua-card-address"><strong>Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
-                            <br><strong>Telefone: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'telefone', true)); ?>
+                        <p class="ua-card-address">
+                            <?php if ($telefone = get_post_meta(get_the_ID(), 'telefone', true)) { ?>
+                                <strong><span class="dashicons dashicons-location"></span> Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
+                                <br><strong><span class="dashicons dashicons-phone"></span> Telefone: </strong><?php echo esc_html($telefone); ?>
+                            <?php } ?>
+
+                            <?php if ($telefone = get_post_meta(get_the_ID(), 'teleconsulta', true)) { ?>
+                                <br><strong><span class="dashicons dashicons-desktop"></span></span> Teleconsulta: </strong> Sim
+                            <?php } ?>
+                            <?php if ($telefone = get_post_meta(get_the_ID(), 'telepediatria', true)) { ?>
+                                <br><strong><span class="dashicons dashicons-desktop"></span></span> Telepediatria: </strong> Sim
+                            <?php } ?>
                         </p>
                     </div>
                     <div>
-                        <a class="ua-card-link" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'link', true)); ?>" target="_blank">Saiba mais <div class="ua-card-link-icon"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
-                                    <path style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" d="
-	M38.5,25.5v10c0,3.314-2.686,6-6,6h-20c-3.314,0-6-2.686-6-6v-20c0-3.314,2.686-6,6-6h10" />
-                                    <line style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" x1="23.5" y1="24.5" x2="41.5" y2="6.5" />
-                                    <polyline style="fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="
-	27.5,6.5 41.5,6.5 41.5,20.5 " />
-                                </svg></div></a>
+                        <a class="ua-card-link" href="<?php echo esc_url(get_post_meta(get_the_ID(), 'link', true)); ?>" target="_blank">Saiba mais <div class="ua-card-link-icon"><span class="dashicons dashicons-admin-links"></span></div></a>
                     </div>
                 </div>
                 <?php if (has_post_thumbnail()) the_post_thumbnail(); ?>
