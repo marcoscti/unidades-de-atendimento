@@ -124,12 +124,15 @@ add_shortcode('unidades_atendimento', function () {
                                 <?php echo esc_html($telefone); ?><br>
                             <?php } ?>
 
-                            <?php if ($teleconsulta) { ?>
+                            <?php if ($teleconsulta && !$telepediatria) { ?>
                                 <strong><span class="dashicons dashicons-desktop"></span> Teleconsulta: </strong> Sim<br>
                             <?php } ?>
 
-                            <?php if ($telepediatria) { ?>
+                            <?php if ($telepediatria && !$teleconsulta) { ?>
                                 <strong><span class="dashicons dashicons-desktop"></span> Telepediatria: </strong> Sim
+                            <?php } ?>
+                            <?php if ($telepediatria && $teleconsulta) { ?>
+                                <strong><span class="dashicons dashicons-desktop"></span> Telepediatria e Teleconsulta: </strong> Sim
                             <?php } ?>
 
                         </p>
