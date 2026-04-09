@@ -3,7 +3,9 @@
 /**
  * Plugin Name: Unidades de Atendimento
  * Description: CRUD de Unidades de Atendimento com shortcode para exibição em cards filtráveis.
- * Version: 1.3.1
+ * Version: 1.3.2
+ * Requires at least: 5.8
+ * Requires PHP:      7.4
  * Author: Marcos Cordeiro
  * Author URI:        https://github.com/marcoscti
  * License:           GPL-2.0+
@@ -73,8 +75,8 @@ add_action('save_post', function ($post_id) {
 });
 
 add_shortcode('unidades_atendimento', function () {
-    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.3.1", "all");
-    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.3.1", "all");
+    wp_enqueue_style('ua-style', UA_PLUGIN_URL . 'assets/style.css', [], "1.3.2", "all");
+    wp_enqueue_script('ua-script', UA_PLUGIN_URL . 'assets/script.js', [], "1.3.2", "all");
 
     $q = new WP_Query([
         'post_type' => 'unidade_atendimento',
