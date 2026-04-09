@@ -106,18 +106,32 @@ add_shortcode('unidades_atendimento', function () {
                     <div>
                         <h3 class="ua-card-title"><?php the_title(); ?></h3>
                         <p class="ua-card-main-content"><?php the_content(); ?></p>
+                        <?php
+                        $endereco = get_post_meta(get_the_ID(), 'endereco', true);
+                        $telefone = get_post_meta(get_the_ID(), 'telefone', true);
+                        $teleconsulta = get_post_meta(get_the_ID(), 'teleconsulta', true);
+                        $telepediatria = get_post_meta(get_the_ID(), 'telepediatria', true);
+                        ?>
                         <p class="ua-card-address">
-                            <?php if ($telefone = get_post_meta(get_the_ID(), 'telefone', true)) { ?>
-                                <strong><span class="dashicons dashicons-location"></span> Endereço: </strong><?php echo esc_html(get_post_meta(get_the_ID(), 'endereco', true)); ?>
-                                <br><strong><span class="dashicons dashicons-phone"></span> Telefone: </strong><?php echo esc_html($telefone); ?>
+
+                            <?php if ($endereco) { ?>
+                                <strong><span class="dashicons dashicons-location"></span> Endereço: </strong>
+                                <?php echo esc_html($endereco); ?><br>
                             <?php } ?>
 
-                            <?php if ($telefone = get_post_meta(get_the_ID(), 'teleconsulta', true)) { ?>
-                                <br><strong><span class="dashicons dashicons-desktop"></span></span> Teleconsulta: </strong> Sim
+                            <?php if ($telefone) { ?>
+                                <strong><span class="dashicons dashicons-phone"></span> Telefone: </strong>
+                                <?php echo esc_html($telefone); ?><br>
                             <?php } ?>
-                            <?php if ($telefone = get_post_meta(get_the_ID(), 'telepediatria', true)) { ?>
-                                <br><strong><span class="dashicons dashicons-desktop"></span></span> Telepediatria: </strong> Sim
+
+                            <?php if ($teleconsulta) { ?>
+                                <strong><span class="dashicons dashicons-desktop"></span> Teleconsulta: </strong> Sim<br>
                             <?php } ?>
+
+                            <?php if ($telepediatria) { ?>
+                                <strong><span class="dashicons dashicons-desktop"></span> Telepediatria: </strong> Sim
+                            <?php } ?>
+
                         </p>
                     </div>
                     <div>
